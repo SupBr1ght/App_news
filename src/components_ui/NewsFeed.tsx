@@ -1,6 +1,6 @@
-import { Box, Link, Stack, Heading } from "@chakra-ui/react";
+import { Box, Heading, Stack } from "@chakra-ui/react";
 import { newsData } from "../data/NewsData";
-import { Link as RouterLink } from "react-router-dom";
+import { AppLink } from "../components_ui/AppLink";
 
 export default function NewsLinks() {
 	return (
@@ -22,18 +22,18 @@ export default function NewsLinks() {
 						bg="white"
 						borderRadius="md"
 						boxShadow="sm"
-						w="full" // або "auto", якщо хочеш Box під текст
+						w="full"
 						textAlign="center"
 					>
-						<Link
-							as={RouterLink}
+						<AppLink
+							to={`/news/${item.id}`}
 							color="blue.500"
 							fontSize="lg"
 							textAlign="center"
 							display="block"
 						>
 							{item.description}
-						</Link>
+						</AppLink>
 					</Box>
 				))}
 			</Stack>
