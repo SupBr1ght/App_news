@@ -1,19 +1,20 @@
 import { Box, Button, Input, Stack } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-
-interface LoginFormProps {
-	onLogin: (data: { email: string; password: string }) => void;
-}
+import { useNavigate } from "react-router-dom";
 
 interface LoginFormFields {
 	email: string;
 	password: string;
 }
 
-export default function LoginForm({ onLogin }: LoginFormProps) {
+export default function LoginForm() {
 	const { register, handleSubmit } = useForm<LoginFormFields>();
+	const navigate = useNavigate();
 
-	const submit = (data: LoginFormFields) => onLogin(data);
+	const submit = (data: LoginFormFields) => {
+		console.log("Login data:", data);
+		navigate("/news");
+	};
 
 	return (
 		<Box
@@ -22,24 +23,26 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 			p={4}
 			borderWidth="1px"
 			borderRadius="md"
+			maxW="400px"
+			w="full"
+			bg="white"
+			boxShadow="md"
 		>
 			<Stack>
 				<Input
 					placeholder="Email"
 					bg="gray.200"
+					color="green"
 					{...register("email", { required: true })}
-					_placeholder={{ color: "gray.500", opacity: 0.8 }}
-					color="black"
 				/>
 				<Input
-					bg="gray.200"
+					color="green"
 					type="password"
 					placeholder="Password"
-					_placeholder={{ color: "gray.500", opacity: 0.8 }}
+					bg="gray.200"
 					{...register("password", { required: true })}
-					color="black"
 				/>
-				<Button type="submit" bg="green.400">
+				<Button type="submit" colorScheme="green">
 					Login
 				</Button>
 			</Stack>
