@@ -19,7 +19,11 @@ export default function AuthPage({ onLogin, onRegister }: AuthPageProps) {
 				) : (
 					<RegisterForm onRegister={onRegister} />
 				)}
-				<Button variant="outline" onClick={() => setIsLogin(!isLogin)}>
+				<Button
+					color="black"
+					variant="outline"
+					onClick={() => setIsLogin(!isLogin)}
+				>
 					{isLogin ? "Go to Registration" : "Go to Login"}
 				</Button>
 			</Stack>

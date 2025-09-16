@@ -24,13 +24,24 @@ export default function LoginForm({ onLogin }: LoginFormProps) {
 			borderRadius="md"
 		>
 			<Stack>
-				<Input placeholder="Email" {...register("email", { required: true })} />
 				<Input
+					placeholder="Email"
+					bg="gray.200"
+					{...register("email", { required: true })}
+					_placeholder={{ color: "gray.500", opacity: 0.8 }}
+					color="black"
+				/>
+				<Input
+					bg="gray.200"
 					type="password"
 					placeholder="Password"
+					_placeholder={{ color: "gray.500", opacity: 0.8 }}
 					{...register("password", { required: true })}
+					color="black"
 				/>
-				<Button type="submit">Login</Button>
+				<Button type="submit" bg="green.400">
+					Login
+				</Button>
 			</Stack>
 		</Box>
 	);

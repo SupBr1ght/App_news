@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 export interface User {
 	email: string;
 }
