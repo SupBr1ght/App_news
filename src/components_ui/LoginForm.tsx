@@ -1,5 +1,5 @@
+import { Box, Button, Input, Stack } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { Box, Input, Button, Stack } from "@chakra-ui/react";
 
 interface LoginFormProps {
 	onLogin: (data: { email: string; password: string }) => void;

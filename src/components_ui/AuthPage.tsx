@@ -1,7 +1,7 @@
+import { Box, Button, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { Box, Button, Stack } from "@chakra-ui/react";
 
 interface AuthPageProps {
 	onLogin: (data: { email: string; password: string }) => void;
@@ -20,8 +20,9 @@ export default function AuthPage({ onLogin, onRegister }: AuthPageProps) {
 					<RegisterForm onRegister={onRegister} />
 				)}
 				<Button
-					color="black"
-					variant="outline"
+					bg="gray.200"
+					size="lg"
+					margin="40px"
 					onClick={() => setIsLogin(!isLogin)}
 				>
 					{isLogin ? "Go to Registration" : "Go to Login"}
