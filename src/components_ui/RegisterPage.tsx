@@ -4,7 +4,7 @@ import RegisterForm from "./RegisterForm";
 export default function RegisterPage() {
 	return (
 		<Box
-			flex="1"
+			minH="100vh"
 			display="flex"
 			alignItems="center"
 			justifyContent="center"
