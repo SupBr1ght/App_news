@@ -1,24 +1,42 @@
-import { Box, Link } from "@chakra-ui/react";
+import { Box, Link, Stack, Heading } from "@chakra-ui/react";
 import { newsData } from "../data/NewsData";
 import { Link as RouterLink } from "react-router-dom";
 
 export default function NewsLinks() {
 	return (
-		<Box>
-			{newsData.map((item) => (
-				<Box key={item.id} mb={4} textAlign="center">
-					<Link
-						as={RouterLink}
+		<Box
+			minH="100vh"
+			bg="gray.50"
+			p={4}
+			display="flex"
+			flexDirection="column"
+			alignItems="center"
+			justifyContent="center"
+		>
+			<Heading mb={6}>Latest News</Heading>
+			<Stack w="full" maxW="600px" alignItems="center">
+				{newsData.map((item) => (
+					<Box
 						key={item.id}
-						display="block"
+						p={4}
+						bg="white"
+						borderRadius="md"
+						boxShadow="sm"
+						w="full" // або "auto", якщо хочеш Box під текст
 						textAlign="center"
-						color="blue.500"
-						mb={4}
 					>
-						{item.description}
-					</Link>
-				</Box>
-			))}
+						<Link
+							as={RouterLink}
+							color="blue.500"
+							fontSize="lg"
+							textAlign="center"
+							display="block"
+						>
+							{item.description}
+						</Link>
+					</Box>
+				))}
+			</Stack>
 		</Box>
 	);
 }
