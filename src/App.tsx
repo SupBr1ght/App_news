@@ -1,16 +1,11 @@
-import React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-import AuthPage from "./components_ui/AuthPage";
 import { useAuth } from "./hooks/UseAuth";
+import { Provider } from "./components/ui/provider";
+import AuthPage from "./components_ui/AuthPage";
 
-function App() {
-	const { user, login, register } = useAuth();
+export default function App() {
+	const { login, register } = useAuth();
 
-	return (
-		<ChakraProvider>
-			<AuthPage onLogin={login} onRegister={register} />
-		</ChakraProvider>
-	);
+	<Provider>
+		<AuthPage onLogin={login} onRegister={register} />
+	</Provider>;
 }
-
-export default App;
