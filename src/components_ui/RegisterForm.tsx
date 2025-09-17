@@ -1,19 +1,20 @@
+import { Box, Button, Input, Stack } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { Box, Input, Button, Stack } from "@chakra-ui/react";
-
-interface RegisterFormProps {
-	onRegister: (data: { email: string; password: string }) => void;
-}
+import { useNavigate } from "react-router-dom";
 
 interface RegisterFormFields {
 	email: string;
 	password: string;
 }
 
-export default function RegisterForm({ onRegister }: RegisterFormProps) {
+export default function RegisterForm() {
 	const { register, handleSubmit } = useForm<RegisterFormFields>();
+	const navigate = useNavigate();
 
-	const submit = (data: RegisterFormFields) => onRegister(data);
+	const submit = (data: RegisterFormFields) => {
+		console.log("Register data:", data);
+		navigate("/news");
+	};
 
 	return (
 		<Box
@@ -22,24 +23,24 @@ export default function RegisterForm({ onRegister }: RegisterFormProps) {
 			p={4}
 			borderWidth="1px"
 			borderRadius="md"
+			maxW="400px"
+			w="full"
+			bg="white"
+			boxShadow="md"
 		>
 			<Stack>
 				<Input
 					placeholder="Email"
 					bg="gray.200"
 					{...register("email", { required: true })}
-					_placeholder={{ color: "gray.500", opacity: 0.8 }}
-					color="black"
 				/>
 				<Input
-					bg="gray.200"
 					type="password"
 					placeholder="Password"
-					_placeholder={{ color: "gray.500", opacity: 0.8 }}
+					bg="gray.200"
 					{...register("password", { required: true })}
-					color="black"
 				/>
-				<Button type="submit" bg="green.400">
+				<Button type="submit" colorScheme="blue">
 					Register
 				</Button>
 			</Stack>
