@@ -1,7 +1,7 @@
 import { VStack, Button, Box } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterSchema } from "./types/types";
+import { RegisterSchema } from "../../types/types";
 import type { z } from "zod";
 import FormInput from "./AuthForm";
 import { useNavigate } from "react-router-dom";

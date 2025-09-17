@@ -1,18 +1,47 @@
-import { Flex, Box } from "@chakra-ui/react";
-import { Navigate, Route, Routes } from "react-router";
-import LoginPage from "./components_ui/LoginPage";
-import RegisterPage from "./components_ui/RegisterPage";
+import { Suspense, lazy } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./modules/Layout";
+import { Center, Spinner } from "@chakra-ui/react";
+
+const LoginPage = lazy(() => import("./modules/auth/pagesAuth/LoginPage"));
+const RegisterPage = lazy(
+	() => import("./modules/auth/pagesAuth/RegisterPage"),
+);
 
 export default function App() {
 	return (
-		<Flex direction="column" minH="100vh">
-			<Box flex="1" display="flex">
-				<Routes>
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/register" element={<RegisterPage />} />
-					<Route path="*" element={<Navigate to="/login" />} />
-				</Routes>
-			</Box>
-		</Flex>
+		<Routes>
+			<Route element={<Layout />}>
+				<Route
+					path="/login"
+					element={
+						<Suspense
+							fallback={
+								<Center h="100vh">
+									<Spinner size="xl" color="green.500" />
+								</Center>
+							}
+						>
+							<LoginPage />
+						</Suspense>
+					}
+				/>
+				<Route
+					path="/register"
+					element={
+						<Suspense
+							fallback={
+								<Center h="100vh">
+									<Spinner size="xl" color="green.500" />
+								</Center>
+							}
+						>
+							<RegisterPage />
+						</Suspense>
+					}
+				/>
+				<Route path="*" element={<Navigate to="/login" />} />
+			</Route>
+		</Routes>
 	);
 }
