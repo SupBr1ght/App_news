@@ -26,13 +26,15 @@ export default function RegisterForm() {
 		<Box
 			as="form"
 			onSubmit={handleSubmit(submit)}
-			p={4}
+			p={6}
+			mx="auto"
+			mt={10}
 			borderWidth="1px"
-			borderRadius="md"
+			borderRadius="xl"
 			maxW="400px"
 			w="full"
-			bg="white"
-			boxShadow="md"
+			bgColor="green.200"
+			boxShadow="lg"
 		>
 			<Stack>
 				<Input
@@ -70,7 +72,7 @@ export default function RegisterForm() {
 						{errors.confirmPassword.message}
 					</Text>
 				)}
-				<Button type="submit" colorScheme="blue">
+				<Button type="submit" bgColor="green.400">
 					Register
 				</Button>
 			</Stack>

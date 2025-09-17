@@ -35,6 +35,8 @@ export default function LoginForm() {
 			w="full"
 			bg="white"
 			boxShadow="md"
+			bgGradient="linear(to-br, green.50, green.100)"
+			bgColor="green.200"
 		>
 			<Stack>
 				<Input
@@ -60,7 +62,7 @@ export default function LoginForm() {
 						{errors.password.message}
 					</Text>
 				)}
-				<Button type="submit" colorScheme="green">
+				<Button type="submit" bgColor="green.400">
 					Login
 				</Button>
 			</Stack>
