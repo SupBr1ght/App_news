@@ -14,14 +14,13 @@ export default function NewsPage() {
 
 	return (
 		<Box
-			minH="100vh"
+			flex={1}
 			bg="green.200"
 			color="blackAlpha.800"
 			p={6}
 			display="flex"
 			flexDirection="column"
 			alignItems="center"
-			justifyContent="center"
 		>
 			<Heading mb={4}>{article.title}</Heading>
 			<Text fontSize="lg" textAlign="center">

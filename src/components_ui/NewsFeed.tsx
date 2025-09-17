@@ -5,13 +5,13 @@ import { AppLink } from "../components_ui/AppLink";
 export default function NewsLinks() {
 	return (
 		<Box
-			minH="100vh"
-			bg="gray.50"
 			p={4}
+			bg="gray.50"
+			w="full"
+			minH="100vh"
 			display="flex"
 			flexDirection="column"
 			alignItems="center"
-			justifyContent="center"
 		>
 			<Heading mb={6}>Latest News</Heading>
 			<Stack w="full" maxW="600px" alignItems="center">
