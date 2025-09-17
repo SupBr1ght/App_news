@@ -7,6 +7,16 @@ export const LoginSchema = z
       .string()
       .min(8, { message: "Password is too short" })
       .max(20, { message: "Password is too long" }),
+  })
+  
+  
+export const RegisterSchema = z
+  .object({
+    email: z.email(),
+    password: z
+      .string()
+      .min(8, { message: "Password is too short" })
+      .max(20, { message: "Password is too long" }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -14,4 +24,6 @@ export const LoginSchema = z
     path: ["confirmPassword"],
   });
 
+
 export type UserData = z.infer<typeof LoginSchema>;
+export type RegisterData = z.infer<typeof RegisterSchema>;
