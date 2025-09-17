@@ -1,9 +1,10 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
+import { Stack, Button } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "./types/types";
+import type { z } from "zod";
+import FormInput from "./AuthForm";
+import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../store/UserStore";
 
 type LoginFormFields = z.infer<typeof LoginSchema>;
@@ -24,48 +25,14 @@ export default function LoginForm() {
 	};
 
 	return (
-		<Box
-			flex={1}
-			as="form"
-			onSubmit={handleSubmit(submit)}
-			p={4}
-			borderWidth="1px"
-			borderRadius="md"
-			maxW="400px"
-			w="full"
-			bg="white"
-			boxShadow="md"
-			bgGradient="linear(to-br, green.50, green.100)"
-			bgColor="green.200"
-		>
+		<form onSubmit={handleSubmit(submit)}>
 			<Stack>
-				<Input
-					placeholder="Email"
-					bg="gray.200"
-					color="green"
-					{...register("email", { required: true })}
-				/>
-				{errors.email && (
-					<Text color="red.500" fontSize="sm">
-						{errors.email.message}
-					</Text>
-				)}
-				<Input
-					color="green"
-					type="password"
-					placeholder="Password"
-					bg="gray.200"
-					{...register("password", { required: true })}
-				/>
-				{errors.password && (
-					<Text color="red.500" fontSize="sm">
-						{errors.password.message}
-					</Text>
-				)}
-				<Button type="submit" bgColor="green.400">
+				<FormInput name="email" register={register} errors={errors} />
+				<FormInput name="password" register={register} errors={errors} />
+				<Button type="submit" colorScheme="green">
 					Login
 				</Button>
 			</Stack>
-		</Box>
+		</form>
 	);
 }

@@ -1,9 +1,10 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
+import { VStack, Button, Box } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { RegisterSchema } from "./types/types";
-import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterSchema } from "./types/types";
+import type { z } from "zod";
+import FormInput from "./AuthForm";
+import { useNavigate } from "react-router-dom";
 
 type RegisterFormFields = z.infer<typeof RegisterSchema>;
 
@@ -23,59 +24,32 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<Box
-			as="form"
-			onSubmit={handleSubmit(submit)}
-			p={6}
-			mx="auto"
-			mt={10}
-			borderWidth="1px"
-			borderRadius="xl"
-			maxW="400px"
-			w="full"
-			bgColor="green.200"
-			boxShadow="lg"
-		>
-			<Stack>
-				<Input
-					placeholder="Email"
-					bg="gray.200"
-					color="green"
-					{...register("email", { required: true })}
-				/>
-				{errors.email && (
-					<Text color="red.500" fontSize="sm">
-						{errors.email.message}
-					</Text>
-				)}
-				<Input
-					type="password"
-					color="green"
-					placeholder="Password"
-					bg="gray.200"
-					{...register("password", { required: true })}
-				/>
-				{errors.password && (
-					<Text color="red.500" fontSize="sm">
-						{errors.password.message}
-					</Text>
-				)}
-				<Input
-					color="green"
-					type="password"
-					placeholder="Confirm password"
-					bg="gray.200"
-					{...register("confirmPassword", { required: true })}
-				/>
-				{errors.confirmPassword && (
-					<Text color="red.500" fontSize="sm">
-						{errors.confirmPassword.message}
-					</Text>
-				)}
-				<Button type="submit" bgColor="green.400">
-					Register
-				</Button>
-			</Stack>
-		</Box>
+		<form onSubmit={handleSubmit(submit)}>
+			<Box
+				p={6}
+				mx="auto"
+				mt={10}
+				borderWidth="1px"
+				borderRadius="xl"
+				maxW="600px"
+				w="full"
+				bgColor="green.200"
+				bgGradient="linear(to-br, green.50, green.100)"
+				boxShadow="lg"
+			>
+				<VStack gap={8}>
+					<FormInput name="email" register={register} errors={errors} />
+					<FormInput name="password" register={register} errors={errors} />
+					<FormInput
+						name="confirmPassword"
+						register={register}
+						errors={errors}
+					/>
+					<Button type="submit" colorScheme="green" bgColor="green.300">
+						Register
+					</Button>
+				</VStack>
+			</Box>
+		</form>
 	);
 }
