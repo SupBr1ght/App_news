@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "./types/types";
+import { useUserStore } from "../store/UserStore";
 
 type LoginFormFields = z.infer<typeof LoginSchema>;
 
@@ -18,7 +19,7 @@ export default function LoginForm() {
 	const navigate = useNavigate();
 
 	const submit = (data: LoginFormFields) => {
-		console.log("Login data:", data);
+		useUserStore.getState().login(data.email);
 		navigate("/news");
 	};
 
