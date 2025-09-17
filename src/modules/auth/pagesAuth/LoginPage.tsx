@@ -1,17 +1,16 @@
 import { Box } from "@chakra-ui/react";
-import RegisterForm from "./RegisterForm";
+import LoginForm from "../formAuth/LoginForm";
 
-export default function RegisterPage() {
+export default function LoginPage() {
 	return (
 		<Box
-			minH="100vh"
+			flex="1"
 			display="flex"
 			alignItems="center"
 			justifyContent="center"
 			bg="gray.50"
-			p={4}
 		>
-			<RegisterForm />
+			<LoginForm />
 		</Box>
 	);
 }
