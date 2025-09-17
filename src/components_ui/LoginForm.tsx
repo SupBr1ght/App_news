@@ -18,6 +18,7 @@ export default function LoginForm() {
 
 	return (
 		<Box
+			flex={1}
 			as="form"
 			onSubmit={handleSubmit(submit)}
 			p={4}

@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 export default function LoginPage() {
 	return (
 		<Box
-			minH="100vh"
+			flex="1"
 			display="flex"
 			alignItems="center"
 			justifyContent="center"
