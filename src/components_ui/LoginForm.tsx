@@ -1,14 +1,20 @@
-import { Box, Button, Input, Stack } from "@chakra-ui/react";
+import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginSchema } from "./types/types";
 
-interface LoginFormFields {
-	email: string;
-	password: string;
-}
+type LoginFormFields = z.infer<typeof LoginSchema>;
 
 export default function LoginForm() {
-	const { register, handleSubmit } = useForm<LoginFormFields>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<LoginFormFields>({
+		resolver: zodResolver(LoginSchema),
+	});
 	const navigate = useNavigate();
 
 	const submit = (data: LoginFormFields) => {
@@ -36,6 +42,11 @@ export default function LoginForm() {
 					color="green"
 					{...register("email", { required: true })}
 				/>
+				{errors.email && (
+					<Text color="red.500" fontSize="sm">
+						{errors.email.message}
+					</Text>
+				)}
 				<Input
 					color="green"
 					type="password"
@@ -43,6 +54,11 @@ export default function LoginForm() {
 					bg="gray.200"
 					{...register("password", { required: true })}
 				/>
+				{errors.password && (
+					<Text color="red.500" fontSize="sm">
+						{errors.password.message}
+					</Text>
+				)}
 				<Button type="submit" colorScheme="green">
 					Login
 				</Button>
