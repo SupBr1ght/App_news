@@ -45,7 +45,12 @@ export default function RegisterForm() {
 						register={register}
 						errors={errors}
 					/>
-					<Button type="submit" colorScheme="green" bgColor="green.300">
+					<Button
+						type="submit"
+						colorScheme="green"
+						w="full"
+						bgColor="green.300"
+					>
 						Register
 					</Button>
 				</VStack>
