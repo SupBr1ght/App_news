@@ -44,7 +44,7 @@ export default function NewsPage() {
 	if (!id) return <Text>Wrong</Text>;
 
 	const article = news.find((n) => n.id === parseInt(id, 10));
-	if (!article) return <Text>The news didn't found</Text>;
+	if (!article) return <Text color="red.500">The news didn't found</Text>;
 
 	return (
 		<Box
