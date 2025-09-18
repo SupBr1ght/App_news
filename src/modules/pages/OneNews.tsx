@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { newsData } from "../../data/NewsData";
 
@@ -26,6 +26,15 @@ export default function NewsPage() {
 			<Text fontSize="lg" textAlign="center">
 				{article.content}
 			</Text>
+			<Box w="100%" maxW="800px" aspectRatio={16 / 9} mt={4}>
+				<Image
+					src={article.image}
+					alt="Image not found"
+					objectFit="cover"
+					borderRadius="md"
+				/>
+			</Box>
+
 		</Box>
 	);
 }
