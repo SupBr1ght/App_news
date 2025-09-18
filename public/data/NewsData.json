@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"title": "Новина 1",
+		"description": "Сьогодні о 12 ночі зникла сова",
+		"content": "Повний текст новини 1...",
+		"image": "/data/assets/eagle.jpg"
+	},
+	{
+		"id": 2,
+		"title": "Новина 2",
+		"description": "Дерева це легені землі, та чи так це насправді?",
+		"content": "Повний текст новини 2...",
+		"image": "/data/assets/tree.jpg"
+	}
+]

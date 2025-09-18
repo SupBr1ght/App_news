@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spacer, Button, HStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Spacer, HStack, Link } from "@chakra-ui/react";
 
 export default function Header() {
 	return (
@@ -9,15 +9,15 @@ export default function Header() {
 				<Spacer />
 
 				<HStack gap={4}>
-					<Button variant="ghost" color="white">
+					<Link href="#" color="white">
 						Main page
-					</Button>
-					<Button variant="ghost" color="white">
+					</Link>
+					<Link href="#" color="white">
 						About us
-					</Button>
-					<Button variant="ghost" color="white">
+					</Link>
+					<Link href="#" color="white">
 						Contacts
-					</Button>
+					</Link>
 				</HStack>
 			</Flex>
 		</Box>

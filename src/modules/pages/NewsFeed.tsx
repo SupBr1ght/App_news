@@ -1,8 +1,33 @@
-import { Box, Heading, Stack } from "@chakra-ui/react";
-import { newsData } from "../../data/NewsData";
+import { useEffect, useState } from "react";
+import { Box, Heading, Stack, Spinner, Center } from "@chakra-ui/react";
 import { AppLink } from "./AppLink";
 
+interface Article {
+	id: number;
+	title: string;
+	description: string;
+	content: string;
+	image: string;
+}
+
 export default function NewsLinks() {
+	const [news, setNews] = useState<Article[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		fetch("/data/NewsData.json")
+			.then((res) => res.json())
+			.then((data: Article[]) => setNews(data))
+			.finally(() => setLoading(false));
+	}, []);
+
+	if (loading)
+		return (
+			<Center h="100vh">
+				<Spinner size="xl" color="green.500" />
+			</Center>
+		);
+
 	return (
 		<Box
 			p={4}
@@ -14,8 +39,8 @@ export default function NewsLinks() {
 			alignItems="center"
 		>
 			<Heading mb={6}>Latest News</Heading>
-			<Stack w="full" maxW="600px" alignItems="center">
-				{newsData.map((item) => (
+			<Stack w="full" maxW="600px" alignItems="center" gap={4}>
+				{news.map((item) => (
 					<Box
 						key={item.id}
 						p={4}
