@@ -1,11 +1,11 @@
-import { Button, Box, VStack } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { Box, Button, VStack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "../../types/types";
-import type { z } from "zod";
-import FormInput from "./AuthForm";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import type { z } from "zod";
 import { useUserStore } from "../../../store/UserStore";
+import { LoginSchema } from "../../types/types";
+import FormInput from "./AuthForm";
 
 type LoginFormFields = z.infer<typeof LoginSchema>;
 

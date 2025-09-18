@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spacer, HStack, Link } from "@chakra-ui/react";
+import { Box, Flex, Heading, HStack, Link, Spacer } from "@chakra-ui/react";
 
 export default function Header() {
 	return (

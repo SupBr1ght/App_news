@@ -1,5 +1,5 @@
+import { Box, Center, Image, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Box, Text, Spinner, Center, Image, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 interface Article {
@@ -47,11 +47,9 @@ export default function NewsPage() {
 			pt={50}
 		>
 			<VStack gap={6} align="stretch" maxW="800px" mx="auto">
-
 				<Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold">
 					{article.title}
 				</Text>
-
 
 				<Image
 					src={article.image}
@@ -60,11 +58,9 @@ export default function NewsPage() {
 					fit="fill"
 				/>
 
-
 				<Text fontSize="lg" fontWeight="medium" color="gray.700">
 					{article.description}
 				</Text>
-
 
 				<Box fontSize="md" lineHeight="tall" color="gray.800">
 					<Text whiteSpace="pre-wrap">{article.content}</Text>

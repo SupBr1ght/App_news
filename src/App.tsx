@@ -1,8 +1,8 @@
-import { Flex, Box, Center, Spinner } from "@chakra-ui/react";
-import { Navigate, Route, Routes } from "react-router";
-import Header from "./modules/pages/Header";
-import Footer from "./modules/pages/Footer";
+import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
+import { Navigate, Route, Routes } from "react-router";
+import Footer from "./modules/pages/Footer";
+import Header from "./modules/pages/Header";
 import Layout from "./modules/pages/Layout";
 
 const LoginPage = lazy(() => import("./modules/auth/pagesAuth/LoginPage"));
@@ -11,7 +11,6 @@ const RegisterPage = lazy(
 );
 const NewsLinks = lazy(() => import("./modules/pages/NewsFeed"));
 const NewsPage = lazy(() => import("./modules/pages/OneNews"));
-
 
 export default function App() {
 	return (
@@ -81,7 +80,6 @@ export default function App() {
 					/>
 					<Route path="*" element={<Navigate to="/login" />} />
 				</Routes>
-
 			</Box>
 
 			<Footer />

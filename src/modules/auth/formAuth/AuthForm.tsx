@@ -1,10 +1,14 @@
 import { Input, Text } from "@chakra-ui/react";
-import type { UseFormRegister } from "react-hook-form";
+import type { UseFormRegister, FieldErrors } from "react-hook-form";
 
+interface FormValues {
+	email: string;
+	password: string;
+}
 interface FormInputProps {
-	name: string;
-	register: UseFormRegister<any>;
-	errors?: any;
+	name: keyof FormValues;
+	register: UseFormRegister<FormValues>;
+	errors?: FieldErrors<FormValues>;
 	type?: string;
 	placeholder?: string;
 }
