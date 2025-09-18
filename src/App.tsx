@@ -15,9 +15,9 @@ const RegisterPage = lazy(
 
 export default function App() {
 	return (
-		<Flex direction="column">
+		<Flex direction="column" minH="100vh">
 			<Header />
-			<Box flex="1" display="flex" flexDirection="column" minH="0" overflow="auto">
+			<Box flex="1" display="flex" flexDirection="column"  overflow="hidden">
 				<Routes>
 					<Route element={<Layout />}>
 				<Route

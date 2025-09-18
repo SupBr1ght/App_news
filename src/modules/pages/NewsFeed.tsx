@@ -8,7 +8,7 @@ export default function NewsLinks() {
 			p={4}
 			bg="gray.50"
 			w="full"
-			minH="100vh"
+			flex={1}
 			display="flex"
 			flexDirection="column"
 			alignItems="center"

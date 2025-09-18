@@ -26,7 +26,6 @@ export default function RegisterForm() {
 	return (
 		<form onSubmit={handleSubmit(submit)}>
 			<Box
-				
 				borderWidth="1px"
 				borderRadius="xl"
 				maxW="600px"
@@ -34,6 +33,7 @@ export default function RegisterForm() {
 				bgColor="green.200"
 				bgGradient="linear(to-br, green.50, green.100)"
 				boxShadow="lg"
+				p={6}
 			>
 				<VStack gap={8}>
 					<FormInput name="email" register={register} errors={errors} />
