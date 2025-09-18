@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Box, Heading, Text, Image, Spinner, Center } from "@chakra-ui/react";
+import { Box, Text, Spinner, Center, Image, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 interface Article {
@@ -38,35 +38,38 @@ export default function NewsPage() {
 
 	return (
 		<Box
+			bg="gray.50"
+			color="blackAlpha.900"
 			flex={1}
-			bg="green.200"
-			color="blackAlpha.800"
-			p={6}
-			display="flex"
-			flexDirection="column"
-			alignItems="center"
-			minH="calc(100vh - 100px)"
+			boxSizing="border-box"
+			overflowX="hidden"
+			pb={100}
+			pt={50}
 		>
-			<Heading mb={4}>{article.title}</Heading>
-			<Text fontSize="lg" textAlign="center">
-				{article.content}
-			</Text>
+			<VStack gap={6} align="stretch" maxW="800px" mx="auto">
+
+				<Text fontSize={{ base: "2xl", md: "4xl" }} fontWeight="bold">
+					{article.title}
+				</Text>
 
 
-			<Box w="100%" maxW="800px" mt={4} position="relative">
-				<Box pt="56.25%" />
 				<Image
 					src={article.image}
-					fit="contain"
+					alt={article.title}
 					borderRadius="md"
-					loading="lazy"
-					position="absolute"
-					top={0}
-					left={0}
-					w="100%"
-					h="100%"
+					fit="fill"
 				/>
-			</Box>
+
+
+				<Text fontSize="lg" fontWeight="medium" color="gray.700">
+					{article.description}
+				</Text>
+
+
+				<Box fontSize="md" lineHeight="tall" color="gray.800">
+					<Text whiteSpace="pre-wrap">{article.content}</Text>
+				</Box>
+			</VStack>
 		</Box>
 	);
 }
