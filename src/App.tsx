@@ -1,47 +1,49 @@
-import { Suspense, lazy } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Layout from "./modules/Layout";
-import { Center, Spinner } from "@chakra-ui/react";
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Layout from "./modules/pages/Layout";
 
 const LoginPage = lazy(() => import("./modules/auth/pagesAuth/LoginPage"));
 const RegisterPage = lazy(
 	() => import("./modules/auth/pagesAuth/RegisterPage"),
 );
+const NewsLinks = lazy(() => import("./modules/pages/NewsFeed"));
+const NewsPage = lazy(() => import("./modules/pages/OneNews"));
+
+
 
 export default function App() {
 	return (
-		<Routes>
-			<Route element={<Layout />}>
-				<Route
-					path="/login"
-					element={
-						<Suspense
-							fallback={
-								<Center h="100vh">
-									<Spinner size="xl" color="green.500" />
-								</Center>
+		<BrowserRouter>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Routes>
+					<Route path="/" element={<Layout />}> //1
+						<Route
+							path="/login"
+							element={
+								<LoginPage />
 							}
-						>
-							<LoginPage />
-						</Suspense>
-					}
-				/>
-				<Route
-					path="/register"
-					element={
-						<Suspense
-							fallback={
-								<Center h="100vh">
-									<Spinner size="xl" color="green.500" />
-								</Center>
+						/>
+						<Route
+							path="/register"
+							element={
+								<RegisterPage />
 							}
-						>
-							<RegisterPage />
-						</Suspense>
-					}
-				/>
-				<Route path="*" element={<Navigate to="/login" />} />
-			</Route>
-		</Routes>
+						/>
+						<Route
+							path="/news"
+							element={
+								<NewsLinks />
+							}
+						/>
+						<Route
+							path="/news/:id"
+							element={
+								<NewsPage />
+							}
+						/>
+					</Route>
+				</Routes>
+			</Suspense>
+		</BrowserRouter>
 	);
 }

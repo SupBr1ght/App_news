@@ -1,9 +1,34 @@
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
-import tsconfigPaths from "vite-tsconfig-paths"
+import react from "@vitejs/plugin-react";
+import { visualizer } from "rollup-plugin-visualizer";
+import { defineConfig } from "vite";
+import checker from "vite-plugin-checker";
+import compression from "vite-plugin-compression";
+import Inspect from "vite-plugin-inspect";
+import svgr from "vite-plugin-svgr";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), tsconfigPaths()],
-})
+	plugins: [
+		react(),
+		svgr(),
+		checker({
+			typescript: true,
+			overlay: true,
+		}),
+		compression({ algorithm: "brotliCompress" }),
+		Inspect(),
+		visualizer({ open: true, gzipSize: true }),
+	],
+	build: {
+		minify: "terser",
+		terserOptions: {
+			compress: { drop_console: true },
+		},
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					vendor: ["react", "react-dom", "@chakra-ui/react"],
+				},
+			},
+		},
+	},
+});
