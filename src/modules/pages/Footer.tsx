@@ -1,4 +1,3 @@
-// src/components/Footer.jsx
 import { Box, Flex, HStack, Text, Link } from "@chakra-ui/react";
 
 export default function Footer() {

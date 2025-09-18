@@ -27,7 +27,7 @@ export default function NewsLinks() {
 					>
 						<AppLink
 							to={`/news/${item.id}`}
-							color="blue.500"
+							color="teal.500"
 							fontSize="lg"
 							textAlign="center"
 							display="block"

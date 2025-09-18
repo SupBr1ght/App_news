@@ -29,9 +29,12 @@ export default function NewsPage() {
 			<Box w="100%" maxW="800px" aspectRatio={16 / 9} mt={4}>
 				<Image
 					src={article.image}
-					alt="Image not found"
-					objectFit="cover"
+					alt={article.title}
 					borderRadius="md"
+					loading="lazy"
+					h="600px"
+					w="1000px"
+					fit="contain"
 				/>
 			</Box>
 
