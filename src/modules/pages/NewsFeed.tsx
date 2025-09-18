@@ -1,5 +1,5 @@
 import { Box, Center, Heading, Image, Spinner, Stack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { AppLink } from "./AppLink";
 
 interface Article {
@@ -10,21 +10,32 @@ interface Article {
 	image: string;
 }
 
+// upload news
+const fetchNews = async (): Promise<Article[]> => {
+	const res = await fetch("/data/NewsData.json");
+	if (!res.ok) {
+		throw new Error("Failed to fetch news");
+	}
+	return res.json();
+};
+
 export default function NewsLinks() {
-	const [news, setNews] = useState<Article[]>([]);
-	const [loading, setLoading] = useState(true);
+	const { data: news = [], isLoading, isError } = useQuery({
+		queryKey: ["news"],
+		queryFn: fetchNews,
+	});
 
-	useEffect(() => {
-		fetch("/data/NewsData.json")
-			.then((res) => res.json())
-			.then((data: Article[]) => setNews(data))
-			.finally(() => setLoading(false));
-	}, []);
-
-	if (loading)
+	if (isLoading)
 		return (
 			<Center h="100vh">
 				<Spinner size="xl" color="green.500" />
+			</Center>
+		);
+
+	if (isError)
+		return (
+			<Center h="100vh">
+				<Heading color="red.500">Failed to load news</Heading>
 			</Center>
 		);
 
@@ -60,7 +71,6 @@ export default function NewsLinks() {
 							{item.description}
 						</AppLink>
 						<Box w="100%" maxW="800px" mt={4} position="relative">
-
 							<Image
 								src={item.image}
 								fit="contain"

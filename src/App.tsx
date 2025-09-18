@@ -9,6 +9,8 @@ const RegisterPage = lazy(
 const NewsLinks = lazy(() => import("./modules/pages/NewsFeed"));
 const NewsPage = lazy(() => import("./modules/pages/OneNews"));
 
+
+
 export default function App() {
 	return (
 		<BrowserRouter>
