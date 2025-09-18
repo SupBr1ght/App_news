@@ -60,17 +60,12 @@ export default function NewsLinks() {
 							{item.description}
 						</AppLink>
 						<Box w="100%" maxW="800px" mt={4} position="relative">
-							<Box pt="56.25%" />
+
 							<Image
 								src={item.image}
 								fit="contain"
 								borderRadius="md"
 								loading="lazy"
-								position="absolute"
-								top={0}
-								left={0}
-								w="100%"
-								h="100%"
 							/>
 						</Box>
 					</Box>

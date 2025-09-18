@@ -2,7 +2,7 @@ import { Box, Button, VStack } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import type { z } from "zod";
+import { z } from "zod";
 import { RegisterSchema } from "../../types/types";
 import FormInput from "./AuthForm";
 
@@ -33,6 +33,7 @@ export default function RegisterForm() {
 				bgColor="green.200"
 				bgGradient="linear(to-br, green.50, green.100)"
 				boxShadow="lg"
+				color="green.600"
 				p={6}
 			>
 				<VStack gap={8}>

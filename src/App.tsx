@@ -1,8 +1,5 @@
-import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
-import { Navigate, Route, Routes } from "react-router";
-import Footer from "./modules/pages/Footer";
-import Header from "./modules/pages/Header";
+import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "./modules/pages/Layout";
 
 const LoginPage = lazy(() => import("./modules/auth/pagesAuth/LoginPage"));
@@ -14,75 +11,45 @@ const NewsPage = lazy(() => import("./modules/pages/OneNews"));
 
 export default function App() {
 	return (
-		<Flex direction="column" minH="100vh">
-			<Header />
-			<Box flex="1" display="flex" flexDirection="column" overflow="hidden">
+		<BrowserRouter>
+			<Suspense fallback={<div>Loading...</div>}>
 				<Routes>
-					<Route element={<Layout />}>
+					<Route path="/" element={<Layout />}> //1
 						<Route
 							path="/login"
 							element={
-								<Suspense
-									fallback={
-										<Center>
-											<Spinner size="xl" color="green.500" />
-										</Center>
-									}
-								>
-									<LoginPage />
-								</Suspense>
+								<LoginPage />
 							}
 						/>
 						<Route
 							path="/register"
 							element={
-								<Suspense
-									fallback={
-										<Center>
-											<Spinner size="xl" color="green.500" />
-										</Center>
-									}
-								>
-									<RegisterPage />
-								</Suspense>
+								<RegisterPage />
 							}
 						/>
-						<Route path="*" element={<Navigate to="/login" />} />
-					</Route>
-
-					<Route
-						path="/news"
-						element={
-							<Suspense
-								fallback={
-									<Center>
-										<Spinner size="xl" color="green.500" />
-									</Center>
-								}
-							>
+						<Route
+							path="/news"
+							element={
 								<NewsLinks />
-							</Suspense>
-						}
-					/>
-					<Route
-						path="/news/:id"
-						element={
-							<Suspense
-								fallback={
-									<Center>
-										<Spinner size="xl" color="green.500" />
-									</Center>
-								}
-							>
+							}
+						/>
+						<Route
+							path="/news/:id"
+							element={
 								<NewsPage />
-							</Suspense>
-						}
-					/>
-					<Route path="*" element={<Navigate to="/login" />} />
+							}
+						/>
+					</Route>
 				</Routes>
-			</Box>
+			</Suspense>
+		</BrowserRouter>
 
-			<Footer />
-		</Flex>
+
+
+
+
+
+
+
 	);
 }

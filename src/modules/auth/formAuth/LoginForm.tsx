@@ -35,6 +35,7 @@ export default function LoginForm() {
 				bgColor="green.200"
 				bgGradient="linear(to-br, green.50, green.100)"
 				boxShadow="lg"
+				color="green.600"
 				p={6}
 			>
 				<VStack gap={4}>
