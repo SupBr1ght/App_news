@@ -1,6 +1,6 @@
 import { Box, Center, Image, Spinner, Text, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 interface Article {
 	id: number;
@@ -10,30 +10,40 @@ interface Article {
 	image: string;
 }
 
+
+const fetchNews = async (): Promise<Article[]> => {
+	const res = await fetch("/data/NewsData.json");
+	if (!res.ok) {
+		throw new Error("Failed to fetch news");
+	}
+	return res.json();
+};
+
 export default function NewsPage() {
-	const { id } = useParams();
-	const [article, setArticle] = useState<Article | null>(null);
-	const [loading, setLoading] = useState(true);
+	const { id } = useParams<{ id: string }>();
 
-	useEffect(() => {
-		fetch("/data/NewsData.json")
-			.then((res) => res.json())
-			.then((data: Article[]) => {
-				if (!id) return;
-				const found = data.find((n) => n.id === parseInt(id, 10));
-				setArticle(found || null);
-			})
-			.finally(() => setLoading(false));
-	}, [id]);
+	const { data: news = [], isLoading, isError } = useQuery({
+		queryKey: ["news"],
+		queryFn: fetchNews,
+	});
 
-	if (loading)
+	if (isLoading)
 		return (
 			<Center h="100vh">
 				<Spinner size="xl" color="green.500" />
 			</Center>
 		);
 
+	if (isError)
+		return (
+			<Center h="100vh">
+				<Text color="red.500">Failed to load news</Text>
+			</Center>
+		);
+
 	if (!id) return <Text>Wrong</Text>;
+
+	const article = news.find((n) => n.id === parseInt(id, 10));
 	if (!article) return <Text>The news didn't found</Text>;
 
 	return (

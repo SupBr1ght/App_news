@@ -10,7 +10,7 @@ interface Article {
 	image: string;
 }
 
-// upload news
+
 const fetchNews = async (): Promise<Article[]> => {
 	const res = await fetch("/data/NewsData.json");
 	if (!res.ok) {
