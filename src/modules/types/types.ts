@@ -24,3 +24,4 @@ export const RegisterSchema = z
 
 export type UserData = z.infer<typeof LoginSchema>;
 export type RegisterData = z.infer<typeof RegisterSchema>;
+

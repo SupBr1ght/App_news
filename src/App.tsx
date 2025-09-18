@@ -45,13 +45,5 @@ export default function App() {
 				</Routes>
 			</Suspense>
 		</BrowserRouter>
-
-
-
-
-
-
-
-
 	);
 }
